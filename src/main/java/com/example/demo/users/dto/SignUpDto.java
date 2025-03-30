@@ -68,7 +68,6 @@ public class SignUpDto {
                     .gender(GenderType.valueOf(request.getGenderType()))
                     .roles(List.of("ROLE_USER"))
                     .build();
-
         }
 
     }
