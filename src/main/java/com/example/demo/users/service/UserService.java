@@ -1,7 +1,7 @@
 package com.example.demo.users.service;
 
 
-import com.example.demo.common.ResultDto;
+import com.example.demo.common.dto.ResultDto;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.exception.CustomException;
 import com.example.demo.users.dto.SignUpDto;
@@ -10,6 +10,8 @@ import com.example.demo.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 import static com.example.demo.exception.ErrorCode.*;
 
@@ -55,6 +57,15 @@ public class UserService {
         UserEntity user = userRepository.save(SignUpDto.Request.toEntity(request));
 
         return ResultDto.of("회원가입에 성공하였습니다.", SignUpDto.Response.fromDto(UserDto.fromEntity(user)));
+
+    }
+
+    private static String createRandomNum() {
+
+        Random random = new Random();
+        int certificationNumber = random.nextInt(9999) + 1;
+
+        return String.valueOf(certificationNumber);
 
     }
 
